@@ -18,15 +18,14 @@ credentials += Credentials(
   sys.props.getOrElse("repo.pwd", "")
 )
 
+publishMavenStyle := true
 publishTo := {
   val repoName = sys.props.get("repo.name")
   val repoUrl = sys.props.get("repo.url")
-  if (repoName.isDefined && repoUrl.isDefined) {
+
+  if (repoName.isDefined && repoUrl.isDefined)
     Some(repoName.get at repoUrl.get)
-  } else {
+  else
     None
-  }
 }
 
-// Replace default publish task with the one from sbt-aether-deploy
-overridePublishSettings
